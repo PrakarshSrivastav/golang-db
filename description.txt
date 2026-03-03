@@ -1,0 +1,18 @@
+What we did:
+
+Set up the project structure and entry point in a single main.go file
+Defined the Driver struct — the core engine that handles all DB operations, with a directory path, per-collection mutexes, and a logger
+Defined the Logger interface, keeping logging pluggable and swappable
+Implemented New() — initializes the driver, cleans the directory path, sets up default logging via lumber, and either connects to an existing DB directory or creates a fresh one on disk
+Stubbed out the four core DB operations: Write, Read, ReadAll, Delete
+Defined User and Address as sample data models
+Wrote main() to wire everything together and test the flow with hardcoded employee data
+
+What we learned:
+
+How a file-based database driver is structured in Go
+Using sync.Mutex and map[string]*sync.Mutex for per-collection locking — the foundation of concurrency safety
+How os.Stat and os.MkdirAll handle directory existence checks and creation
+How filepath.Clean normalizes paths safely
+Dependency injection via the Options struct — keeping the driver flexible and testable
+The overall read/write lifecycle of a flat-file JSON database
